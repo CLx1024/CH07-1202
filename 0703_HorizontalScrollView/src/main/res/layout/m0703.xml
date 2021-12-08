@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/Black"
+    android:clipChildren="false"
+    tools:context=".M0703"> <!--android:clipChildren="false 可超出範圍-->
+
+    <ImageSwitcher
+        android:id="@+id/m0703_im01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="@dimen/Margins"
+
+        android:scaleType="fitXY" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <GridView
+                android:id="@+id/m0703_g001"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:ignore="TouchTargetSizeCheck">
+
+            </GridView>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/myname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/p10"
+        android:layout_marginBottom="@dimen/p10"
+        android:text="@string/myname"
+        android:textColor="@color/Yellow" />
+
+</RelativeLayout>
