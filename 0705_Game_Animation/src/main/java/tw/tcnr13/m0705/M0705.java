@@ -4,7 +4,9 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.BounceInterpolator;
 import android.widget.AdapterView;
 import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
@@ -21,17 +23,15 @@ import tw.tcnr13.m0705.R;
 
 public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory, AdapterView.OnItemClickListener {
 
-
     private TextView txtSelect;
     private TextView txtResult;
-
 
     private String user_select;
     private String answer;
     private ImageButton btnScissors;
     private ImageButton btnStone;
     private ImageButton btnNet;
-    private ImageView txtComPlay;
+
     private MediaPlayer startmusic;
     private MediaPlayer mediaWin;
     private MediaPlayer mediaLose;
@@ -39,7 +39,7 @@ public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory
     private MediaPlayer endmusic;
     private Toast toast;
     private RelativeLayout r_layout;
-
+    private ImageSwitcher txtComPlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,12 @@ public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory
         btnScissors = (ImageButton)findViewById(R.id.m0705_b001); //***
         btnStone = (ImageButton)findViewById(R.id.m0705_b002); //***
         btnNet = (ImageButton)findViewById(R.id.m0705_b003);  //***
-        txtSelect = (TextView)findViewById(R.id.m0705_s001);
+        txtSelect = (TextView) findViewById(R.id.m0705_s001);
         txtResult = (TextView)findViewById(R.id.m0705_f000);
-        txtComPlay = (ImageView)findViewById(R.id.m0705_c001); //******我上支城市沒寫到這個變數？
+        txtComPlay = (ImageSwitcher) findViewById(R.id.m0705_c001); //******我上支城市沒寫到這個變數？
+        txtComPlay.setFactory(this);
 
+        u_setalpha();  //--設定imageutton初始值為全透明B   // 設alpha透明，自定義函數
 
         // ---開機動畫---
         r_layout = (RelativeLayout) findViewById(R.id.m0705_r001);
@@ -63,7 +65,6 @@ public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory
 //        r_layout.setAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_scale_rotate_out));
         r_layout.setAnimation(AnimationUtils.loadAnimation(this, R.anim.anim_scale_rotate_in));
         r_layout.setBackgroundResource(R.drawable.back01);
-
 
 
         // --開啟片頭音樂-----
@@ -88,7 +89,6 @@ public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory
         @Override
         public void onClick(View v) {
             int iComPlay = (int) (Math.random() * 3 + 1);       // 1 - scissors, 2 - stone, 3 - net.
-
             switch(v.getId()){   //這邊次之2
                 case R.id.m0705_b001:  //玩家選剪刀
                     user_select = getString(R.string.m0705_ans1)+" "+getString(R.string.m0705_b001);
@@ -167,23 +167,40 @@ public class M0705 extends AppCompatActivity implements ViewSwitcher.ViewFactory
                             break;
                     }
                     break;
-
             }
+            //-----------電腦出拳增加動畫-----------
+            txtComPlay.clearAnimation();
+            //Animation anim = AnimationUtils.loadAnimation(this,R.anim.anim_trans_in);  // 我打this會跳錯誤訊息 所以打下面那行
+            Animation anim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.anim_trans_bounce);  // down
+            anim.setInterpolator(new BounceInterpolator());  // jump
+            txtComPlay.setAnimation(anim);
+            //------------------------------------
+
             txtSelect.setText(user_select);  //這邊先寫1
             txtResult.setText(answer);
         }
-        };
+    };
 
     private void u_setalpha() {  //這是我們自己設的自定義函數
         //imageButton 背景為銀色且為全透明
        // btnScissors.setBackgroundColor(ContextCompat.getColor(this, R.color.Silver));  //講義是舊的寫法 新版的是寫Color這樣而已// Class0~255 L0~1
-        btnScissors.setBackgroundColor(Color.GRAY);
+
+        //btnScissors.setBackgroundColor(Color.GRAY);
+        btnScissors.setBackgroundResource(R.drawable.circle_shape);  // 加這行 12/14
         btnScissors.getBackground().setAlpha(0); //0-255
-        btnStone.setBackgroundColor(Color.GRAY);
+
+        //btnStone.setBackgroundColor(Color.GRAY);
+        btnStone.setBackgroundResource(R.drawable.circle_shape); // 加這行 12/14
         btnStone.getBackground().setAlpha(0);
-        btnNet.setBackgroundColor(Color.GRAY);
+
+        //btnNet.setBackgroundColor(Color.GRAY);
+        btnNet.setBackgroundResource(R.drawable.circle_shape); // 加這行 12/14
         btnNet.getBackground().setAlpha(0);
+
         // 以上六行這一堆是在做歸零
+
+        txtComPlay.setBackgroundResource(R.drawable.circle_shape);
+        txtComPlay.getBackground().setAlpha(0);
     }
 
     private void music(int i) {

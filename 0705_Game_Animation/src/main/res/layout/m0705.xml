@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/fig1"
     android:orientation="vertical"
-    android:padding="@dimen/p10"
-    tools:context=".m0705">
+    android:padding="@dimen/p10">
 
     <TextView
         android:id="@+id/m0705_t001"
@@ -44,7 +43,7 @@
         android:text="@string/m0705_t003"
         android:textSize="@dimen/fontsize" />
 
-    <ImageView
+    <ImageSwitcher
         android:id="@+id/m0705_c001"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,11 +51,7 @@
         android:layout_alignTop="@+id/m0705_b002"
         android:layout_marginStart="7dp"
         android:layout_marginTop="-1dp"
-        android:background="#00000000"
-        android:gravity="center"
-        android:text="@string/m0705_t004"
-        android:textSize="@dimen/fontsize"
-        app:srcCompat="@drawable/scissors" />
+        android:background="#00000000" />
 
     <ImageButton
         android:id="@+id/m0705_b001"
@@ -66,7 +61,7 @@
         android:layout_alignEnd="@+id/m0705_t003"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:layout_marginEnd="-1dp"
-        android:background="#00000000"
+        android:background="@drawable/circle_shape"
         android:src="@drawable/scissors"
         tools:ignore="SpeakableTextPresentCheck" />
 
@@ -97,7 +92,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/m0705_b003"
-        android:layout_marginTop="@dimen/p20"
+        android:layout_marginTop="20dp"
         android:background="@color/Silver"
         android:text="@string/m0705_ans1"
         android:textColor="@color/Red"
@@ -125,3 +120,5 @@
         android:text="@string/myname"
         android:textColor="@color/Yellow" />
 </RelativeLayout>
+
+<!--  android:clipChildren="false" -->
