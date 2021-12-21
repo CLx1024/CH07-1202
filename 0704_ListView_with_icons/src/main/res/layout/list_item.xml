@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/Teal">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="@dimen/p200"
+        android:layout_height="@dimen/p100"
+        android:layout_weight="1"
+        android:contentDescription="@string/m0704_p001"
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@drawable/img01th" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/p10"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/m0704_t001a"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/p10"
+            android:background="@color/Teal"
+            android:text="@string/m0704_t001a"
+            android:textColor="@color/Aqua"
+            android:textSize="@dimen/fontsize" />
+
+        <TextView
+            android:id="@+id/m0704_t001b"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/Teal"
+            android:text="@string/m0704_t001b"
+            android:textColor="@color/Yellow"
+            android:textSize="@dimen/fontsize" />
+    </LinearLayout>
+
+    </LinearLayout>
